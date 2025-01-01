@@ -12,7 +12,6 @@ object FProfileGuru: TFProfileGuru
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
-  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -199,7 +198,7 @@ object FProfileGuru: TFProfileGuru
     RegistryKey = 'Software\Scalabium'
     RegistrySection = 'SMDBGrid'
     WidthOfIndicator = 11
-    DefaultRowHeight = 17
+    DefaultRowHeight = 24
     ScrollBars = ssHorizontal
     Columns = <
       item
@@ -295,7 +294,7 @@ object FProfileGuru: TFProfileGuru
     RegistryKey = 'Software\Scalabium'
     RegistrySection = 'SMDBGrid'
     WidthOfIndicator = 11
-    DefaultRowHeight = 17
+    DefaultRowHeight = 24
     ScrollBars = ssHorizontal
     Columns = <
       item

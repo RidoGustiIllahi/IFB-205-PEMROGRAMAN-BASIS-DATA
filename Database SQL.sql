@@ -14,7 +14,12 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table praktikum.auth_login
+
+-- Dumping database structure for sistempenjadwalankelas
+CREATE DATABASE IF NOT EXISTS `sistempenjadwalankelas` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `sistempenjadwalankelas`;
+
+-- Dumping structure for table sistempenjadwalankelas.auth_login
 CREATE TABLE IF NOT EXISTS `auth_login` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL,
@@ -24,10 +29,8 @@ CREATE TABLE IF NOT EXISTS `auth_login` (
   KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table praktikum.auth_login: ~34 rows (approximately)
+-- Dumping data for table sistempenjadwalankelas.auth_login: ~23 rows (approximately)
 INSERT INTO `auth_login` (`id`, `username`, `password`, `role`) VALUES
-	(1, 'guru', 'guru', 'Guru'),
-	(2, 'siswa', 'siswa', 'Siswa'),
 	(3, 'asep123', 'admin123', 'Guru'),
 	(4, 'basep123', 'admin123', 'Guru'),
 	(5, 'casep123', 'admin123', 'Guru'),
@@ -36,15 +39,6 @@ INSERT INTO `auth_login` (`id`, `username`, `password`, `role`) VALUES
 	(8, 'fasep123', 'admin123', 'Guru'),
 	(9, 'gasep123', 'admin123', 'Guru'),
 	(10, 'hasep123', 'admin123', 'Guru'),
-	(11, 'iasep123', 'admin123', 'Guru'),
-	(12, 'asep123', 'admin123', 'Guru'),
-	(13, 'basep123', 'admin123', 'Guru'),
-	(14, 'casep123', 'admin123', 'Guru'),
-	(15, 'dasep123', 'admin123', 'Guru'),
-	(16, 'easep123', 'admin123', 'Guru'),
-	(17, 'fasep123', 'admin123', 'Guru'),
-	(18, 'gasep123', 'admin123', 'Guru'),
-	(19, 'hasep123', 'admin123', 'Guru'),
 	(21, 'agus123', 'siswa123', 'Siswa'),
 	(22, 'bagus123', 'siswa123', 'Siswa'),
 	(23, 'cagus123', 'siswa123', 'Siswa'),
@@ -61,7 +55,7 @@ INSERT INTO `auth_login` (`id`, `username`, `password`, `role`) VALUES
 	(34, 'nagus123', 'siswa123', 'Siswa'),
 	(35, 'oagus123', 'siswa123', 'Siswa');
 
--- Dumping structure for table praktikum.guru
+-- Dumping structure for table sistempenjadwalankelas.guru
 CREATE TABLE IF NOT EXISTS `guru` (
   `NIP` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -75,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `guru` (
   CONSTRAINT `FK_guru_auth_login` FOREIGN KEY (`username`) REFERENCES `auth_login` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table praktikum.guru: ~8 rows (approximately)
+-- Dumping data for table sistempenjadwalankelas.guru: ~8 rows (approximately)
 INSERT INTO `guru` (`NIP`, `username`, `Nama`, `TanggalLahir`, `Alamat`, `Email`, `Foto`) VALUES
 	('2023101001', 'asep123', 'Asep', '2024-10-21', 'PAA', 'asep@gmail.com', 'guru.png'),
 	('2023101002', 'basep123', 'Basep', '2024-10-20', 'PBB', 'basep@gmail.com', 'guru.png'),
@@ -86,14 +80,14 @@ INSERT INTO `guru` (`NIP`, `username`, `Nama`, `TanggalLahir`, `Alamat`, `Email`
 	('2023101007', 'gasep123', 'Gasep', '2024-11-08', 'PGG', 'gasep@gmail.com', 'guru.png'),
 	('2023101008', 'hasep123', 'Hasep', '2024-11-09', 'PHH', 'hasep@gmail.com', 'guru.png');
 
--- Dumping structure for table praktikum.hari
+-- Dumping structure for table sistempenjadwalankelas.hari
 CREATE TABLE IF NOT EXISTS `hari` (
   `IDHari` int NOT NULL,
   `Hari` varchar(10) NOT NULL,
   PRIMARY KEY (`IDHari`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table praktikum.hari: ~7 rows (approximately)
+-- Dumping data for table sistempenjadwalankelas.hari: ~7 rows (approximately)
 INSERT INTO `hari` (`IDHari`, `Hari`) VALUES
 	(1, 'Senin'),
 	(2, 'Selasa'),
@@ -103,7 +97,7 @@ INSERT INTO `hari` (`IDHari`, `Hari`) VALUES
 	(6, 'Sabtu'),
 	(7, 'Minggu');
 
--- Dumping structure for table praktikum.jadwal
+-- Dumping structure for table sistempenjadwalankelas.jadwal
 CREATE TABLE IF NOT EXISTS `jadwal` (
   `IDMataPelajaran` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `IDHari` int DEFAULT NULL,
@@ -117,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `jadwal` (
   CONSTRAINT `FK_jadwal_ruangan` FOREIGN KEY (`IDRuangan`) REFERENCES `ruangan` (`IDRuangan`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table praktikum.jadwal: ~19 rows (approximately)
+-- Dumping data for table sistempenjadwalankelas.jadwal: ~19 rows (approximately)
 INSERT INTO `jadwal` (`IDMataPelajaran`, `IDHari`, `IDRuangan`, `Waktu`) VALUES
 	('1001', 3, '02202', '07:00:00'),
 	('1101', 1, '02202', '10:00:00'),
@@ -139,7 +133,7 @@ INSERT INTO `jadwal` (`IDMataPelajaran`, `IDHari`, `IDRuangan`, `Waktu`) VALUES
 	('1105', 6, '02204', '10:00:00'),
 	('1205', 6, '02207', '10:00:00');
 
--- Dumping structure for table praktikum.kehadiran
+-- Dumping structure for table sistempenjadwalankelas.kehadiran
 CREATE TABLE IF NOT EXISTS `kehadiran` (
   `IDKehadiran` int NOT NULL AUTO_INCREMENT,
   `IDMataPelajaran` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -153,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `kehadiran` (
   CONSTRAINT `FK_kehadiran_siswa` FOREIGN KEY (`NIS`) REFERENCES `siswa` (`NIS`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table praktikum.kehadiran: ~17 rows (approximately)
+-- Dumping data for table sistempenjadwalankelas.kehadiran: ~17 rows (approximately)
 INSERT INTO `kehadiran` (`IDKehadiran`, `IDMataPelajaran`, `Tanggal`, `Waktu`, `NIS`) VALUES
 	(3, '1001', '2024-11-07', '11:26:47', '082023002'),
 	(4, '1002', '2024-11-07', '11:41:30', '082023002'),
@@ -173,7 +167,7 @@ INSERT INTO `kehadiran` (`IDKehadiran`, `IDMataPelajaran`, `Tanggal`, `Waktu`, `
 	(20, '1005', '2024-11-14', '08:11:10', '082023001'),
 	(21, '1003', '2024-11-14', '08:14:06', '082023001');
 
--- Dumping structure for table praktikum.matapelajaran
+-- Dumping structure for table sistempenjadwalankelas.matapelajaran
 CREATE TABLE IF NOT EXISTS `matapelajaran` (
   `IDMataPelajaran` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `NIP` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -183,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `matapelajaran` (
   CONSTRAINT `FK_matapelajaran_guru` FOREIGN KEY (`NIP`) REFERENCES `guru` (`NIP`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table praktikum.matapelajaran: ~19 rows (approximately)
+-- Dumping data for table sistempenjadwalankelas.matapelajaran: ~19 rows (approximately)
 INSERT INTO `matapelajaran` (`IDMataPelajaran`, `NIP`, `Nama`) VALUES
 	('1001', '2023101001', 'Dasar-dasar Teknik Komputer dan Jaringan'),
 	('1002', '2023101001', 'Komputer dan Jaringan Dasar'),
@@ -205,14 +199,14 @@ INSERT INTO `matapelajaran` (`IDMataPelajaran`, `NIP`, `Nama`) VALUES
 	('1205', '2023101008', 'Pemeliharaan Jaringan dan Troubleshooting'),
 	('1206', '2023101008', 'Produk Kreatif dan Kewirausahaan Lanjut');
 
--- Dumping structure for table praktikum.ruangan
+-- Dumping structure for table sistempenjadwalankelas.ruangan
 CREATE TABLE IF NOT EXISTS `ruangan` (
   `IDRuangan` varchar(10) NOT NULL,
   `Nama` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IDRuangan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table praktikum.ruangan: ~10 rows (approximately)
+-- Dumping data for table sistempenjadwalankelas.ruangan: ~10 rows (approximately)
 INSERT INTO `ruangan` (`IDRuangan`, `Nama`) VALUES
 	('02201', 'Anggrek'),
 	('02202', 'Melati'),
@@ -225,7 +219,7 @@ INSERT INTO `ruangan` (`IDRuangan`, `Nama`) VALUES
 	('02209', 'Lavender'),
 	('02210', 'Teratai');
 
--- Dumping structure for table praktikum.siswa
+-- Dumping structure for table sistempenjadwalankelas.siswa
 CREATE TABLE IF NOT EXISTS `siswa` (
   `NIS` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `username` varchar(50) NOT NULL,
@@ -239,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `siswa` (
   CONSTRAINT `FK_siswa_auth_login` FOREIGN KEY (`username`) REFERENCES `auth_login` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table praktikum.siswa: ~15 rows (approximately)
+-- Dumping data for table sistempenjadwalankelas.siswa: ~15 rows (approximately)
 INSERT INTO `siswa` (`NIS`, `username`, `Nama`, `TanggalLahir`, `Alamat`, `Email`, `Foto`) VALUES
 	('082023001', 'agus12', 'Agusss', '2024-10-01', 'PHH', 'agus@gmail.com', 'siswa.png'),
 	('082023002', 'bagus123', 'Bagus', '2024-10-20', 'PGG', 'bagus@gmail.com', 'siswa.png'),
@@ -257,7 +251,7 @@ INSERT INTO `siswa` (`NIS`, `username`, `Nama`, `TanggalLahir`, `Alamat`, `Email
 	('082023014', 'nagus123', 'Nagus', '2024-11-14', 'PUU', 'nagus@gmail.com', 'siswa.png'),
 	('082023015', 'oagus123', 'Oagus', '2024-11-15', 'PVV', 'oagus@gmail.com', 'siswa.png');
 
--- Dumping structure for table praktikum.siswamatapelajaran
+-- Dumping structure for table sistempenjadwalankelas.siswamatapelajaran
 CREATE TABLE IF NOT EXISTS `siswamatapelajaran` (
   `IDMataPelajaran` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `NIS` varchar(10) DEFAULT NULL,
@@ -267,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `siswamatapelajaran` (
   CONSTRAINT `FK_siswamatapelajaran_siswa` FOREIGN KEY (`NIS`) REFERENCES `siswa` (`NIS`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table praktikum.siswamatapelajaran: ~95 rows (approximately)
+-- Dumping data for table sistempenjadwalankelas.siswamatapelajaran: ~95 rows (approximately)
 INSERT INTO `siswamatapelajaran` (`IDMataPelajaran`, `NIS`) VALUES
 	('1001', '082023002'),
 	('1002', '082023001'),

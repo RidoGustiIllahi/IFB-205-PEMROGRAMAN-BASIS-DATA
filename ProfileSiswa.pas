@@ -32,7 +32,6 @@ type
     btnSimpanProfile: TBitBtn;
 
     EDBImage1: TEDBImage;
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -47,11 +46,5 @@ implementation
 uses DataModule, Login;
 
 {$R *.dfm}
-
-procedure TFProfileSiswa.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-  FLogin.Close;
-end;
 
 end.

@@ -32,8 +32,6 @@ type
 
 var
   FLogin: TFLogin;
-  i, z : Integer;
-  role, username, password, NIS, NIP, Nama: string;
 
 implementation
   uses DataModule, ProfileSiswa, ProfileGuru;
@@ -46,7 +44,16 @@ begin
 end;
 
 procedure TFLogin.btnLoginClick(Sender: TObject);
+var
+  i, z : Integer;
+  role, username, password, NIS, NIP, Nama: string;
 begin
+  z := 0;
+  NIS := '';
+  NIP := '';
+  Nama := '';
+
+  DM.zqAccount.First;
   for i := 1 to DM.zqAccount.RecordCount do
     begin
       role := DM.zqAccount['role'];
@@ -97,7 +104,7 @@ begin
               '    k.NIS = :NIS';
           DM.zqHadirSw.Params.ParamByName('NIS').AsString := NIS;
           DM.zqHadirSw.Open;
-
+          Break;
         end
       else if ((edUsername.Text = username) and (edPassword.Text = password) and (role = 'Guru'))then
         begin
@@ -147,7 +154,7 @@ begin
               '    mp.NIP = :NIP';
           DM.zqHadirGr.Params.ParamByName('NIP').AsString := NIP;
           DM.zqHadirGr.Open;
-
+          Break;
         end
       else if ((edUsername.Text = username) and (edPassword.Text = password) and (role = 'Admin'))then
         begin
@@ -157,21 +164,24 @@ begin
         begin
           DM.zqAccount.Next;
         end;
-      if z = 1 then
-        begin
-          MessageDlg('Selamat Datang Siswa ' + nama, mtInformation, [mbOK], 0);
-          FProfileSiswa.Show;
-          FLogin.Hide;
-          Break;
-        end
-      else if z = 2 then
-        begin
-          MessageDlg('Selamat Datang Guru ' + nama, mtInformation, [mbOK], 0);
-          FProfileGuru.Show;
-          FLogin.Hide;
-          Break;
-        end;
     end;
+    
+    if z = 1 then
+      begin
+        MessageDlg('Selamat Datang Siswa ' + nama, mtInformation, [mbOK], 0);
+        FProfileSiswa.Show;
+        FLogin.Hide;
+      end
+    else if z = 2 then
+      begin
+        MessageDlg('Selamat Datang Guru ' + nama, mtInformation, [mbOK], 0);
+        FProfileGuru.Show;
+        FLogin.Hide;
+      end
+    else
+      begin
+        MessageDlg('Username atau password salah.', mtError, [mbOK], 0);
+        end;
 end;
 
 end.

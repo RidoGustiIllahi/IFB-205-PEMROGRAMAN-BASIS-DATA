@@ -1,7 +1,7 @@
 object DM: TDM
   OldCreateOrder = False
-  Left = 192
-  Top = 125
+  Left = 897
+  Top = 130
   Height = 566
   Width = 513
   object ZConn: TZConnection
@@ -35,9 +35,6 @@ object DM: TDM
   end
   object zqSiswa: TZQuery
     Connection = ZConn
-    Active = True
-    SQL.Strings = (
-      'SELECT  * FROM siswa')
     Params = <>
     Left = 104
     Top = 8
@@ -49,8 +46,6 @@ object DM: TDM
   end
   object zqGuru: TZQuery
     Connection = ZConn
-    SQL.Strings = (
-      'SELECT * FROM guru')
     Params = <>
     Left = 152
     Top = 8
@@ -62,30 +57,6 @@ object DM: TDM
   end
   object zqJadwalSw: TZQuery
     Connection = ZConn
-    Active = True
-    SQL.Strings = (
-      'SELECT '
-      '            m.IDMataPelajaran,'
-      '            m.Nama AS NamaKelas,'
-      '            g.Nama AS NamaGuru,'
-      '            r.IDRuangan AS NomorRuangan,'
-      '            r.Nama AS NamaRuangan,'
-      '            h.Hari AS NamaHari,'
-      '            j.Waktu'
-      '        FROM '
-      '            siswamatapelajaran smp'
-      '        JOIN '
-      
-        '            matapelajaran m ON smp.IDMataPelajaran = m.IDMataPel' +
-        'ajaran'
-      '        JOIN '
-      '            guru g ON m.NIP = g.NIP'
-      '        JOIN '
-      '            jadwal j ON m.IDMataPelajaran = j.IDMatapelajaran'
-      '        JOIN '
-      '            hari h ON j.IDHari = h.IDHari'
-      '        JOIN '
-      '            ruangan r ON j.IDRuangan = r.IDRuangan')
     Params = <>
     Left = 208
     Top = 8
@@ -97,26 +68,6 @@ object DM: TDM
   end
   object zqJadwalGr: TZQuery
     Connection = ZConn
-    Active = True
-    SQL.Strings = (
-      'SELECT '
-      '        m.IDMataPelajaran,'
-      '        m.Nama AS NamaKelas,'
-      '        g.Nama AS NamaGuru,'
-      '        r.IDRuangan AS NomorRuangan,'
-      '        r.Nama AS NamaRuangan,'
-      '        h.Hari AS NamaHari,'
-      '        j.Waktu'
-      '    FROM '
-      '        matapelajaran m'
-      '    JOIN '
-      '        guru g ON m.NIP = g.NIP'
-      '    JOIN '
-      '        jadwal j ON m.IDMataPelajaran = j.IDMatapelajaran'
-      '    JOIN '
-      '        hari h ON j.IDHari = h.IDHari'
-      '    JOIN '
-      '        ruangan r ON j.IDRuangan = r.IDRuangan')
     Params = <>
     Left = 272
     Top = 8
@@ -128,19 +79,6 @@ object DM: TDM
   end
   object zqHadirSw: TZQuery
     Connection = ZConn
-    Active = True
-    SQL.Strings = (
-      'SELECT '
-      '        mp.IDMataPelajaran AS IDKelas,'
-      '        mp.Nama AS NamaKelas,'
-      '        k.Tanggal,'
-      '        k.Waktu'
-      '    FROM '
-      '        kehadiran k'
-      '    JOIN '
-      
-        '        matapelajaran mp ON k.IDMataPelajaran = mp.IDMataPelajar' +
-        'an')
     Params = <>
     Left = 336
     Top = 8
@@ -152,22 +90,6 @@ object DM: TDM
   end
   object zqHadirGr: TZQuery
     Connection = ZConn
-    Active = True
-    SQL.Strings = (
-      'SELECT '
-      '    mp.IDMataPelajaran AS IDKelas,'
-      '    mp.Nama AS NamaKelas,'
-      '    s.NIS,'
-      '    s.Nama AS NamaSiswa,'
-      '    k.Tanggal,'
-      '    k.Waktu,'
-      '    k.IDKehadiran'
-      'FROM '
-      '    kehadiran k'
-      'JOIN '
-      '    matapelajaran mp ON k.IDMataPelajaran = mp.IDMataPelajaran'
-      'JOIN '
-      '    siswa s ON k.NIS = s.NIS')
     Params = <>
     Left = 392
     Top = 8

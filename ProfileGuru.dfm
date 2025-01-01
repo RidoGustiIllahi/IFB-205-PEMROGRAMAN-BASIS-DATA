@@ -394,6 +394,8 @@ object FProfileGuru: TFProfileGuru
     Top = 8
     Width = 49
     Height = 49
+    DataField = 'Foto'
+    DataSource = DM.dsGuru
     TabOrder = 9
     ZoomToFit = False
   end

@@ -375,11 +375,11 @@ object FProfileSiswa: TFProfileSiswa
   object EDBImage1: TEDBImage
     Left = 672
     Top = 8
-    Width = 49
-    Height = 49
+    Width = 50
+    Height = 50
     DataField = 'Foto'
     DataSource = DM.dsSiswa
-    PopupMenu = DM.popUpGr
+    PopupMenu = DM.popUpSw
     TabOrder = 9
     ZoomToFit = False
   end

@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, DB, ZAbstractRODataset, ZAbstractDataset, ZDataset,
-  ZAbstractConnection, ZConnection;
+  ZAbstractConnection, ZConnection, Menus;
 
 type
   TDM = class(TDataModule)
@@ -23,6 +23,21 @@ type
     dsHadirSw: TDataSource;
     zqHadirGr: TZQuery;
     dsHadirGr: TDataSource;
+    popUpSw: TPopupMenu;
+    LoadFotoSw: TMenuItem;
+    SavetoSw: TMenuItem;
+    ClearFotoSw: TMenuItem;
+    popUpGr: TPopupMenu;
+    LoadFotoGr: TMenuItem;
+    SavetoGr: TMenuItem;
+    ClearFotoGr: TMenuItem;
+    procedure LoadFotoSwClick(Sender: TObject);
+    procedure SavetoSwClick(Sender: TObject);
+    procedure ClearFotoSwClick(Sender: TObject);
+
+    procedure LoadFotoGrClick(Sender: TObject);
+    procedure SavetoGrClick(Sender: TObject);
+    procedure ClearFotoGrClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,6 +49,40 @@ var
 
 implementation
 
+uses myLib_Blob;
+
 {$R *.dfm}
+
+procedure TDM.LoadFotoSwClick(Sender: TObject);
+begin
+  Blob_FromFileImage(zqSiswa.FieldByName('Foto'));
+end;
+
+procedure TDM.SavetoSwClick(Sender: TObject);
+begin
+  Blob_ToFileImage(zqSiswa.FieldByName('Foto'));
+end;
+
+procedure TDM.ClearFotoSwClick(Sender: TObject);
+begin
+  Blob_Clear(zqSiswa.FieldByName('Foto'), 'Kosongkan Foto ?')
+end;
+
+
+
+procedure TDM.LoadFotoGrClick(Sender: TObject);
+begin
+ Blob_FromFileImage(zqGuru.FieldByName('Foto'));
+end;
+
+procedure TDM.SavetoGrClick(Sender: TObject);
+begin
+  Blob_ToFileImage(zqGuru.FieldByName('Foto'));
+end;
+
+procedure TDM.ClearFotoGrClick(Sender: TObject);
+begin
+  Blob_Clear(zqGuru.FieldByName('Foto'), 'Kosongkan Foto ?')
+end;
 
 end.

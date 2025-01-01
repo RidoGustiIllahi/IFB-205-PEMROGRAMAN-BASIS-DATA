@@ -19,6 +19,10 @@ type
     dsJadwalSw: TDataSource;
     zqJadwalGr: TZQuery;
     dsJadwalGr: TDataSource;
+    zqHadirSw: TZQuery;
+    dsHadirSw: TDataSource;
+    zqHadirGr: TZQuery;
+    dsHadirGr: TDataSource;
   private
     { Private declarations }
   public

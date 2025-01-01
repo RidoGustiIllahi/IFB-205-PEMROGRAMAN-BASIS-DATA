@@ -14,40 +14,24 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    Label6: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
 
     dbGridProfile: TSMDBGrid;
     dgGridJadwal: TSMDBGrid;
     dbGridHadir: TSMDBGrid;
 
     dbLookUpHadir: TDBLookupComboBox;
-    dbLookUpPresensi: TDBLookupComboBox;
 
     btnAccount: TBitBtn;
     btnFilter: TBitBtn;
-    btnNilai: TBitBtn;
     btnPrintHadir: TBitBtn;
     btnLogout: TBitBtn;
     btnEditProfile: TBitBtn;
     btnBatalProfile: TBitBtn;
     btnJadwal: TBitBtn;
     btnTmbhHadir: TBitBtn;
-    btnBatalHadir: TBitBtn;
-    btnHadir: TBitBtn;
     btnSimpanProfile: TBitBtn;
 
     EDBImage1: TEDBImage;
-
-    Panel1: TPanel;
-
-    edIdKelas: TEdit;
-    edKelas: TEdit;
-    edTanggal: TEdit;
-    edWaktu: TEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }

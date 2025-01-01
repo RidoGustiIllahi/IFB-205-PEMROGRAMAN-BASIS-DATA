@@ -1,7 +1,7 @@
 object FLogin: TFLogin
   Left = 310
   Top = 179
-  Width = 378
+  Width = 377
   Height = 354
   Caption = 'Login'
   Color = clBtnFace

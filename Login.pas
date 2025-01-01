@@ -82,6 +82,22 @@ begin
           DM.zqJadwalSw.Params.ParamByName('NIS').AsString := NIS;
           DM.zqJadwalSw.Open;
 
+          DM.zqHadirSw.Close;
+          DM.zqHadirSw.SQL.Text :=
+              'SELECT '+
+              '    mp.IDMataPelajaran AS IDKelas,'+
+              '    mp.Nama AS NamaKelas,'+
+              '    k.Tanggal,'+
+              '    k.Waktu '+
+              'FROM '+
+              '    kehadiran k '+
+              'JOIN '+
+              '    matapelajaran mp ON k.IDMataPelajaran = mp.IDMataPelajaran '+
+              'WHERE '+
+              '    k.NIS = :NIS';
+          DM.zqHadirSw.Params.ParamByName('NIS').AsString := NIS;
+          DM.zqHadirSw.Open;
+
         end
       else if ((edUsername.Text = username) and (edPassword.Text = password) and (role = 'Guru'))then
         begin
@@ -110,6 +126,27 @@ begin
               'ORDER BY m.IDMataPelajaran';
           DM.zqJadwalGr.Params.ParamByName('NIP').AsString := NIP;
           DM.zqJadwalGr.Open;
+
+          DM.zqHadirGr.Close;
+          DM.zqHadirGr.SQL.Text :=
+              'SELECT '+
+              '    mp.IDMataPelajaran AS IDKelas,'+
+              '    mp.Nama AS NamaKelas,'+
+              '    s.NIS,'+
+              '    s.Nama AS NamaSiswa,'+
+              '    k.Tanggal,'+
+              '    k.Waktu,'+
+              '    k.IDKehadiran '+
+              'FROM '+
+              '    kehadiran k '+
+              'JOIN '+
+              '    matapelajaran mp ON k.IDMataPelajaran = mp.IDMataPelajaran '+
+              'JOIN '+
+              '    siswa s ON k.NIS = s.NIS '+
+              'WHERE '+
+              '    mp.NIP = :NIP';
+          DM.zqHadirGr.Params.ParamByName('NIP').AsString := NIP;
+          DM.zqHadirGr.Open;
 
         end
       else if ((edUsername.Text = username) and (edPassword.Text = password) and (role = 'Admin'))then

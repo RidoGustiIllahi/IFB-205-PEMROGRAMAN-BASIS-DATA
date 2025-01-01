@@ -126,4 +126,55 @@ object DM: TDM
     Left = 272
     Top = 56
   end
+  object zqHadirSw: TZQuery
+    Connection = ZConn
+    Active = True
+    SQL.Strings = (
+      'SELECT '
+      '        mp.IDMataPelajaran AS IDKelas,'
+      '        mp.Nama AS NamaKelas,'
+      '        k.Tanggal,'
+      '        k.Waktu'
+      '    FROM '
+      '        kehadiran k'
+      '    JOIN '
+      
+        '        matapelajaran mp ON k.IDMataPelajaran = mp.IDMataPelajar' +
+        'an')
+    Params = <>
+    Left = 336
+    Top = 8
+  end
+  object dsHadirSw: TDataSource
+    DataSet = zqHadirSw
+    Left = 336
+    Top = 56
+  end
+  object zqHadirGr: TZQuery
+    Connection = ZConn
+    Active = True
+    SQL.Strings = (
+      'SELECT '
+      '    mp.IDMataPelajaran AS IDKelas,'
+      '    mp.Nama AS NamaKelas,'
+      '    s.NIS,'
+      '    s.Nama AS NamaSiswa,'
+      '    k.Tanggal,'
+      '    k.Waktu,'
+      '    k.IDKehadiran'
+      'FROM '
+      '    kehadiran k'
+      'JOIN '
+      '    matapelajaran mp ON k.IDMataPelajaran = mp.IDMataPelajaran'
+      'JOIN '
+      '    siswa s ON k.NIS = s.NIS')
+    Params = <>
+    Left = 392
+    Top = 8
+  end
+  object dsHadirGr: TDataSource
+    DataSet = zqHadirGr
+    Left = 392
+    Top = 56
+  end
 end

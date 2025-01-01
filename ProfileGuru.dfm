@@ -198,7 +198,7 @@ object FProfileGuru: TFProfileGuru
     RegistryKey = 'Software\Scalabium'
     RegistrySection = 'SMDBGrid'
     WidthOfIndicator = 11
-    DefaultRowHeight = 24
+    DefaultRowHeight = 17
     ScrollBars = ssHorizontal
     Columns = <
       item
@@ -294,7 +294,7 @@ object FProfileGuru: TFProfileGuru
     RegistryKey = 'Software\Scalabium'
     RegistrySection = 'SMDBGrid'
     WidthOfIndicator = 11
-    DefaultRowHeight = 24
+    DefaultRowHeight = 17
     ScrollBars = ssHorizontal
     Columns = <
       item
@@ -379,6 +379,7 @@ object FProfileGuru: TFProfileGuru
     Height = 25
     Caption = 'Logout'
     TabOrder = 7
+    OnClick = btnLogoutClick
   end
   object btnEditProfile: TBitBtn
     Left = 640

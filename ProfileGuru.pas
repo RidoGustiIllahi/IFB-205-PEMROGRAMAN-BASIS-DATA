@@ -32,6 +32,7 @@ type
     btnSimpanProfile: TBitBtn;
 
     EDBImage1: TEDBImage;
+    procedure btnLogoutClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -46,5 +47,21 @@ implementation
 uses DataModule, Login;
 
 {$R *.dfm}
+
+procedure TFProfileGuru.btnLogoutClick(Sender: TObject);
+begin
+  FLogin.edUsername.Text := '';
+  FLogin.edPassword.Text := '';
+
+  DM.zqGuru.Close;
+  DM.zqGuru.SQL.Clear;
+  DM.zqJadwalGr.Close;
+  DM.zqJadwalGr.SQL.Clear;
+  DM.zqHadirGr.Close;
+  DM.zqHadirGr.SQL.Clear;
+
+  FProfileGuru.Hide;
+  FLogin.Show;
+end;
 
 end.

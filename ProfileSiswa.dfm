@@ -362,6 +362,7 @@ object FProfileSiswa: TFProfileSiswa
     Height = 25
     Caption = 'Logout'
     TabOrder = 7
+    OnClick = btnLogoutClick
   end
   object btnEditProfile: TBitBtn
     Left = 640

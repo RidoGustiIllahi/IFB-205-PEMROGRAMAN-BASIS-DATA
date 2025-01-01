@@ -35,9 +35,6 @@ object DM: TDM
   end
   object zqSiswa: TZQuery
     Connection = ZConn
-    Active = True
-    SQL.Strings = (
-      'select * from siswa')
     Params = <>
     Left = 104
     Top = 8
@@ -49,9 +46,6 @@ object DM: TDM
   end
   object zqGuru: TZQuery
     Connection = ZConn
-    Active = True
-    SQL.Strings = (
-      'select * from guru')
     Params = <>
     Left = 152
     Top = 8
@@ -120,7 +114,7 @@ object DM: TDM
     end
   end
   object popUpGr: TPopupMenu
-    Left = 152
+    Left = 104
     Top = 104
     object LoadFotoGr: TMenuItem
       Caption = 'Load Foto'

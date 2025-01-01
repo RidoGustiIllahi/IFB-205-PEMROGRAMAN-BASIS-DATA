@@ -15,10 +15,10 @@ type
 
     Panel1: TPanel;
 
-    cbLiatpw: TCheckBox;
-
     edUsername: TEdit;
     edPassword: TEdit;
+
+    cbLiatpw: TCheckBox;
 
     btnLogin: TBitBtn;
     btnKeluar: TBitBtn;

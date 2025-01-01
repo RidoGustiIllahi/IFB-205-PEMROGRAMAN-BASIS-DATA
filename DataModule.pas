@@ -69,7 +69,6 @@ begin
 end;
 
 
-
 procedure TDM.LoadFotoGrClick(Sender: TObject);
 begin
  Blob_FromFileImage(zqGuru.FieldByName('Foto'));

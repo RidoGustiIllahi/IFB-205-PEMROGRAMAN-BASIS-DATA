@@ -1,6 +1,6 @@
 object FProfileSiswa: TFProfileSiswa
-  Left = 215
-  Top = 75
+  Left = 389
+  Top = 50
   Width = 770
   Height = 750
   Caption = 'Profile Siswa'
@@ -321,7 +321,7 @@ object FProfileSiswa: TFProfileSiswa
     end
   end
   object panelHadir: TPanel
-    Left = 129
+    Left = 137
     Top = 459
     Width = 481
     Height = 241
@@ -340,8 +340,8 @@ object FProfileSiswa: TFProfileSiswa
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 24
-      Top = 181
+      Left = 43
+      Top = 180
       Width = 79
       Height = 20
       Caption = 'Pilih Kelas :'
@@ -353,22 +353,14 @@ object FProfileSiswa: TFProfileSiswa
       ParentFont = False
     end
     object dbLookUpHadir: TDBLookupComboBox
-      Left = 112
+      Left = 129
       Top = 180
       Width = 233
       Height = 21
       TabOrder = 0
     end
-    object btnFilter: TBitBtn
-      Left = 352
-      Top = 184
-      Width = 75
-      Height = 25
-      Caption = 'Filter'
-      TabOrder = 1
-    end
     object btnPrintHadir: TBitBtn
-      Left = 24
+      Left = 41
       Top = 208
       Width = 81
       Height = 25
@@ -376,7 +368,7 @@ object FProfileSiswa: TFProfileSiswa
       TabOrder = 2
     end
     object btnTmbhHadir: TBitBtn
-      Left = 112
+      Left = 129
       Top = 208
       Width = 75
       Height = 25
@@ -450,6 +442,14 @@ object FProfileSiswa: TFProfileSiswa
           Width = 75
           Visible = True
         end>
+    end
+    object btnFilter: TBitBtn
+      Left = 367
+      Top = 178
+      Width = 72
+      Height = 24
+      Caption = 'Filter'
+      TabOrder = 1
     end
   end
 end

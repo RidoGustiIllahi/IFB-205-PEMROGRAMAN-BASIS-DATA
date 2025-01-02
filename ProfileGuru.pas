@@ -27,7 +27,6 @@ type
     PanelHadir: TPanel;
     Label4: TLabel;
     Label5: TLabel;
-    dbLookUpHadir: TDBLookupComboBox;
     btnPrintHadir: TBitBtn;
     btnTmbhHadir: TBitBtn;
     btnFilter: TBitBtn;
@@ -35,6 +34,7 @@ type
     btnEditJadwal: TBitBtn;
     btnSimpanJadwal: TBitBtn;
     btnBatalJadwal: TBitBtn;
+    dbLookUpHadir: TDBLookupComboBox;
     procedure btnLogoutClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnEditProfileClick(Sender: TObject);
@@ -67,6 +67,10 @@ begin
   DM.zqJadwalGr.SQL.Clear;
   DM.zqHadirGr.Close;
   DM.zqHadirGr.SQL.Clear;
+  DM.zqEdAccount.Close;
+  DM.zqEdAccount.SQL.Clear;
+  DM.zqKelas.Close;
+  DM.zqKelas.SQL.Clear;
 
   FProfileGuru.Hide;
   FLogin.Show;
@@ -84,8 +88,9 @@ begin
   DM.zqJadwalGr.SQL.Clear;
   DM.zqHadirGr.Close;
   DM.zqHadirGr.SQL.Clear;
-
-  FProfileGuru.Hide;
+  DM.zqKelas.Close;
+  DM.zqKelas.SQL.Clear;
+  
   FEdAccount.Close;
   FLogin.Show;
 end;
@@ -173,11 +178,6 @@ begin
   panelProfile.Enabled := False;
   panelJadwal.Enabled := False;
   panelHadir.Enabled := False;
-
-  DM.zqEdAccount.Close;
-  DM.zqEdAccount.SQL.Text := 'SELECT * FROM auth_login WHERE username = :username';
-  DM.zqEdAccount.Params.ParamByName('username').AsString := DM.zqGuru['username'];
-  DM.zqEdAccount.Open;
   
   FEdAccount.panelUtama.Enabled := True;
   FEdAccount.Show;

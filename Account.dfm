@@ -25,7 +25,7 @@ object FEdAccount: TFEdAccount
     object Label1: TLabel
       Left = 17
       Top = 12
-      Width = 168
+      Width = 148
       Height = 32
       Alignment = taCenter
       Caption = 'Edit Account'
@@ -39,7 +39,7 @@ object FEdAccount: TFEdAccount
     object lblNama: TLabel
       Left = 32
       Top = 50
-      Width = 136
+      Width = 131
       Height = 24
       Alignment = taCenter
       Caption = 'NIS/NIP - Nama'
@@ -53,7 +53,7 @@ object FEdAccount: TFEdAccount
     object Label3: TLabel
       Left = 24
       Top = 88
-      Width = 64
+      Width = 63
       Height = 16
       Caption = 'Username'
       Font.Charset = DEFAULT_CHARSET
@@ -66,7 +66,7 @@ object FEdAccount: TFEdAccount
     object Label4: TLabel
       Left = 24
       Top = 136
-      Width = 64
+      Width = 60
       Height = 16
       Caption = 'Password'
       Font.Charset = DEFAULT_CHARSET
@@ -80,7 +80,7 @@ object FEdAccount: TFEdAccount
       Left = 16
       Top = 105
       Width = 168
-      Height = 24
+      Height = 21
       DataField = 'username'
       DataSource = DM.dsEdAccount
       TabOrder = 0
@@ -89,7 +89,7 @@ object FEdAccount: TFEdAccount
       Left = 16
       Top = 152
       Width = 168
-      Height = 24
+      Height = 21
       DataField = 'password'
       DataSource = DM.dsEdAccount
       TabOrder = 1

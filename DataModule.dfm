@@ -140,4 +140,15 @@ object DM: TDM
     Left = 56
     Top = 200
   end
+  object zqKelas: TZQuery
+    Connection = ZConn
+    Params = <>
+    Left = 152
+    Top = 152
+  end
+  object dsKelas: TDataSource
+    DataSet = zqKelas
+    Left = 152
+    Top = 200
+  end
 end

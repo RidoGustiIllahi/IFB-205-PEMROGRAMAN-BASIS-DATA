@@ -104,6 +104,31 @@ begin
               '    k.NIS = :NIS';
           DM.zqHadirSw.Params.ParamByName('NIS').AsString := NIS;
           DM.zqHadirSw.Open;
+
+          DM.zqEdAccount.Close;
+          DM.zqEdAccount.SQL.Text := 'SELECT * FROM auth_login WHERE username = :username';
+          DM.zqEdAccount.Params.ParamByName('username').AsString := username;
+          DM.zqEdAccount.Open;
+
+          DM.zqKelas.Close;
+          DM.zqKelas.SQL.Text :=
+              'SELECT ' +
+              '    mp.IDMataPelajaran AS IDKelas, ' +
+              '    mp.Nama AS NamaKelas ' +
+              'FROM ' +
+              '    siswamatapelajaran sm ' +
+              'JOIN ' +
+              '    matapelajaran mp ON sm.IDMataPelajaran = mp.IDMataPelajaran ' +
+              'WHERE   ' +
+              '    sm.NIS = :NIS ' +
+              'ORDER BY mp.Nama';
+          DM.zqKelas.Params.ParamByName('NIS').AsString := NIS;
+          DM.zqKelas.Open;
+
+          FProfileSiswa.dbLookUpHadir.ListSource := DM.dsKelas;
+          FProfileSiswa.dbLookUpHadir.ListField := 'NamaKelas';
+          FProfileSiswa.dbLookUpHadir.KeyField := 'IDKelas';
+
           Break;
         end
       else if ((edUsername.Text = username) and (edPassword.Text = password) and (role = 'Guru'))then
@@ -154,6 +179,28 @@ begin
               '    mp.NIP = :NIP';
           DM.zqHadirGr.Params.ParamByName('NIP').AsString := NIP;
           DM.zqHadirGr.Open;
+
+          DM.zqEdAccount.Close;
+          DM.zqEdAccount.SQL.Text := 'SELECT * FROM auth_login WHERE username = :username';
+          DM.zqEdAccount.Params.ParamByName('username').AsString := username;
+          DM.zqEdAccount.Open;
+
+          DM.zqKelas.SQL.Text :=
+              'SELECT ' +
+              '    IDMataPelajaran AS IDKelas, ' +
+              '    Nama AS NamaKelas ' +
+              'FROM ' +
+              '    matapelajaran ' +
+              'WHERE   ' +
+              '    NIP = :NIP ' +
+              'ORDER BY NamaKelas';
+          DM.zqKelas.Params.ParamByName('NIP').AsString := NIP;
+          DM.zqKelas.Open;
+
+          FProfileGuru.dbLookUpHadir.ListSource := DM.dsKelas;
+          FProfileGuru.dbLookUpHadir.ListField := 'NamaKelas';
+          FProfileGuru.dbLookUpHadir.KeyField := 'IDKelas';
+
           Break;
         end
       else if ((edUsername.Text = username) and (edPassword.Text = password) and (role = 'Admin'))then
@@ -165,7 +212,7 @@ begin
           DM.zqAccount.Next;
         end;
     end;
-    
+
     if z = 1 then
       begin
         MessageDlg('Selamat Datang Siswa ' + nama, mtInformation, [mbOK], 0);

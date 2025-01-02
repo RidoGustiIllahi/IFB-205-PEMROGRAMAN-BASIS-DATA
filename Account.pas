@@ -136,7 +136,7 @@ begin
         panelUtama.Enabled := False;
 
         DM.zqGuru.Close;
-        DM.zqGuru.SQL.Text := 'SELECT * FROM siswa WHERE username = :username';
+        DM.zqGuru.SQL.Text := 'SELECT * FROM guru WHERE username = :username';
         DM.zqGuru.Params.ParamByName('username').AsString := DM.zqEdAccount['username'];
         DM.zqGuru.Open;
 

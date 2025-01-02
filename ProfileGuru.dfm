@@ -371,8 +371,8 @@ object FProfileGuru: TFProfileGuru
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 24
-      Top = 184
+      Left = 23
+      Top = 185
       Width = 79
       Height = 20
       Caption = 'Pilih Kelas :'
@@ -383,20 +383,13 @@ object FProfileGuru: TFProfileGuru
       Font.Style = []
       ParentFont = False
     end
-    object dbLookUpHadir: TDBLookupComboBox
-      Left = 112
-      Top = 188
-      Width = 233
-      Height = 21
-      TabOrder = 0
-    end
     object btnPrintHadir: TBitBtn
       Left = 632
       Top = 184
       Width = 81
       Height = 25
       Caption = 'Print Kehadiran'
-      TabOrder = 1
+      TabOrder = 0
     end
     object btnTmbhHadir: TBitBtn
       Left = 616
@@ -404,7 +397,7 @@ object FProfileGuru: TFProfileGuru
       Width = 97
       Height = 25
       Caption = 'Tambah Kehadiran'
-      TabOrder = 2
+      TabOrder = 1
     end
     object btnFilter: TBitBtn
       Left = 352
@@ -412,7 +405,7 @@ object FProfileGuru: TFProfileGuru
       Width = 75
       Height = 25
       Caption = 'Filter'
-      TabOrder = 3
+      TabOrder = 2
     end
     object dbGridHadir: TSMDBGrid
       Left = 8
@@ -422,7 +415,7 @@ object FProfileGuru: TFProfileGuru
       DataSource = DM.dsHadirGr
       Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
       ReadOnly = True
-      TabOrder = 4
+      TabOrder = 3
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
@@ -498,6 +491,13 @@ object FProfileGuru: TFProfileGuru
           Width = 75
           Visible = True
         end>
+    end
+    object dbLookUpHadir: TDBLookupComboBox
+      Left = 111
+      Top = 185
+      Width = 233
+      Height = 21
+      TabOrder = 4
     end
   end
 end

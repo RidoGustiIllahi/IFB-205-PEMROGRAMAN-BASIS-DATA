@@ -64,6 +64,10 @@ begin
   DM.zqJadwalSw.SQL.Clear;
   DM.zqHadirSw.Close;
   DM.zqHadirSw.SQL.Clear;
+  DM.zqEdAccount.Close;
+  DM.zqEdAccount.SQL.Clear;
+  DM.zqKelas.Close;
+  DM.zqKelas.SQL.Clear;
 
   FProfileSiswa.Hide;
   FLogin.Show;
@@ -81,8 +85,9 @@ begin
   DM.zqJadwalSw.SQL.Clear;
   DM.zqHadirSw.Close;
   DM.zqHadirSw.SQL.Clear;
+  DM.zqKelas.Close;
+  DM.zqKelas.SQL.Clear;
 
-  FProfileSiswa.Hide;
   FEdAccount.Close;
   FLogin.Show;
 end;
@@ -170,11 +175,6 @@ begin
   panelProfile.Enabled := False;
   panelJadwal.Enabled := False;
   panelHadir.Enabled := False;
-
-  DM.zqEdAccount.Close;
-  DM.zqEdAccount.SQL.Text := 'SELECT * FROM auth_login WHERE username = :username';
-  DM.zqEdAccount.Params.ParamByName('username').AsString := DM.zqSiswa['username'];
-  DM.zqEdAccount.Open;
   
   FEdAccount.panelUtama.Enabled := True;
   FEdAccount.Show;

@@ -129,4 +129,15 @@ object DM: TDM
       OnClick = ClearFotoGrClick
     end
   end
+  object zqEdAccount: TZQuery
+    Connection = ZConn
+    Params = <>
+    Left = 56
+    Top = 152
+  end
+  object dsEdAccount: TDataSource
+    DataSet = zqEdAccount
+    Left = 56
+    Top = 200
+  end
 end

@@ -162,6 +162,7 @@ object FProfileGuru: TFProfileGuru
       Height = 25
       Caption = 'Edit Account'
       TabOrder = 1
+      OnClick = btnAccountClick
     end
     object btnEditProfile: TBitBtn
       Left = 640

@@ -37,6 +37,7 @@ type
     procedure btnEditProfileClick(Sender: TObject);
     procedure btnSimpanProfileClick(Sender: TObject);
     procedure btnBatalProfileClick(Sender: TObject);
+    procedure btnAccountClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,7 +49,7 @@ var
 
 implementation
 
-uses DataModule, Login;
+uses DataModule, Login, Account;
 
 {$R *.dfm}
 
@@ -82,6 +83,7 @@ begin
   DM.zqHadirSw.SQL.Clear;
 
   FProfileSiswa.Hide;
+  FEdAccount.Close;
   FLogin.Show;
 end;
 
@@ -160,6 +162,22 @@ begin
   panelHadir.Enabled := True;
 
   ShowMessage('Perubahan dibatalkan.');
+end;
+
+procedure TFProfileSiswa.btnAccountClick(Sender: TObject);
+begin
+  panelHeader.Enabled := False;
+  panelProfile.Enabled := False;
+  panelJadwal.Enabled := False;
+  panelHadir.Enabled := False;
+
+  DM.zqEdAccount.Close;
+  DM.zqEdAccount.SQL.Text := 'SELECT * FROM auth_login WHERE username = :username';
+  DM.zqEdAccount.Params.ParamByName('username').AsString := DM.zqSiswa['username'];
+  DM.zqEdAccount.Open;
+  
+  FEdAccount.panelUtama.Enabled := True;
+  FEdAccount.Show;
 end;
 
 end.

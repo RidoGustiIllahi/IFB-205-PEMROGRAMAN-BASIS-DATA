@@ -8,7 +8,8 @@ uses
   ProfileGuru in 'ProfileGuru.pas' {FProfileGuru},
   Admin in 'Admin.pas' {FAdmin},
   PresensiGuru in 'PresensiGuru.pas' {Form1},
-  PresensiSiswa in 'PresensiSiswa.pas' {Form2};
+  PresensiSiswa in 'PresensiSiswa.pas' {Form2},
+  Account in 'Account.pas' {FEdAccount};
 
 {$R *.res}
 
@@ -21,5 +22,6 @@ begin
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TFEdAccount, FEdAccount);
   Application.Run;
 end.

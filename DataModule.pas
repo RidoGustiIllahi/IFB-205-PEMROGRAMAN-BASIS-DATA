@@ -31,6 +31,8 @@ type
     LoadFotoGr: TMenuItem;
     SavetoGr: TMenuItem;
     ClearFotoGr: TMenuItem;
+    zqEdAccount: TZQuery;
+    dsEdAccount: TDataSource;
     procedure LoadFotoSwClick(Sender: TObject);
     procedure SavetoSwClick(Sender: TObject);
     procedure ClearFotoSwClick(Sender: TObject);

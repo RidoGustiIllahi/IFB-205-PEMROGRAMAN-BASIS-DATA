@@ -1,6 +1,6 @@
 object FLogin: TFLogin
-  Left = 411
-  Top = 178
+  Left = 418
+  Top = 182
   Width = 377
   Height = 354
   Caption = 'Login'

@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, DB, ZAbstractRODataset, ZAbstractDataset, ZDataset,
-  ZAbstractConnection, ZConnection, Menus;
+  ZAbstractConnection, ZConnection, Menus, frxClass, frxDBSet;
 
 type
   TDM = class(TDataModule)
@@ -35,6 +35,16 @@ type
     dsEdAccount: TDataSource;
     zqKelas: TZQuery;
     dsKelas: TDataSource;
+    zqCekSw: TZQuery;
+    dsCekSw: TDataSource;
+    rptJadwalSw: TfrxReport;
+    frxJadwalSw: TfrxDBDataset;
+    rptHadirSw: TfrxReport;
+    frxHadirSw: TfrxDBDataset;
+    rptJadwalGr: TfrxReport;
+    frxJadwalGr: TfrxDBDataset;
+    rptHadirGr: TfrxReport;
+    frxHadirGr: TfrxDBDataset;
     procedure LoadFotoSwClick(Sender: TObject);
     procedure SavetoSwClick(Sender: TObject);
     procedure ClearFotoSwClick(Sender: TObject);

@@ -26,18 +26,21 @@ type
     btnEditProfile: TBitBtn;
     panelHadir: TPanel;
     Label4: TLabel;
-    Label5: TLabel;
-    dbLookUpHadir: TDBLookupComboBox;
-    btnFilter: TBitBtn;
     btnPrintHadir: TBitBtn;
     btnTmbhHadir: TBitBtn;
     dbGridHadir: TSMDBGrid;
+    Label5: TLabel;
+    dbLookUpHadir: TDBLookupComboBox;
     procedure btnLogoutClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnEditProfileClick(Sender: TObject);
     procedure btnSimpanProfileClick(Sender: TObject);
     procedure btnBatalProfileClick(Sender: TObject);
     procedure btnAccountClick(Sender: TObject);
+    procedure dbLookUpHadirCloseUp(Sender: TObject);
+    procedure btnTmbhHadirClick(Sender: TObject);
+    procedure btnJadwalClick(Sender: TObject);
+    procedure btnPrintHadirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -178,6 +181,101 @@ begin
   
   FEdAccount.panelUtama.Enabled := True;
   FEdAccount.Show;
+end;
+
+procedure TFProfileSiswa.dbLookUpHadirCloseUp(Sender: TObject);
+var
+  selectedKelas: string;
+begin
+  if VarIsNull(dbLookUpHadir.KeyValue) then
+    begin
+      ShowMessage('Silakan pilih kelas.');
+      dbLookUpHadir.KeyValue := Null;
+      Exit;
+    end
+  else
+    begin
+      selectedKelas := dbLookUpHadir.KeyValue;
+
+      DM.zqHadirSw.Close;
+      DM.zqHadirSw.SQL.Text :=
+        'SELECT '+
+        '    mp.IDMataPelajaran AS IDKelas,'+
+        '    mp.Nama AS NamaKelas,'+
+        '    k.Tanggal,'+
+        '    k.Waktu '+
+        'FROM '+
+        '    kehadiran k '+
+        'JOIN '+
+        '    matapelajaran mp ON k.IDMataPelajaran = mp.IDMataPelajaran '+
+        'WHERE '+
+        '    k.NIS = :NIS AND mp.IDMataPelajaran = :IDKelas ' +
+        'ORDER BY k.Tanggal DESC, k.Waktu DESC';
+      DM.zqHadirSw.Params.ParamByName('NIS').AsString := DM.zqSiswa['NIS'];
+      DM.zqHadirSw.Params.ParamByName('IDKelas').AsString := selectedKelas;
+      DM.zqHadirSw.Open;
+    end;
+end;
+
+procedure TFProfileSiswa.btnTmbhHadirClick(Sender: TObject);
+var
+  nis, idMataPelajaran: string;
+  currentDate, currentTime: string;
+begin
+  try
+    if VarIsNull(dbLookUpHadir.KeyValue) then
+    begin
+      ShowMessage('Silakan pilih kelas terlebih dahulu.');
+      Exit;
+    end;
+
+    nis := DM.zqSiswa['NIS'];
+    idMataPelajaran := dbLookUpHadir.KeyValue;
+    currentDate := FormatDateTime('yyyy-mm-dd', Now);
+    currentTime := FormatDateTime('hh:nn:ss', Now);
+
+    DM.zqHadirSw.Close;
+    DM.zqHadirSw.SQL.Text :=
+      'INSERT INTO kehadiran (NIS, IDMataPelajaran, Tanggal, Waktu) ' +
+      'VALUES (:NIS, :IDMataPelajaran, :Tanggal, :Waktu)';
+    DM.zqHadirSw.Params.ParamByName('NIS').AsString := nis;
+    DM.zqHadirSw.Params.ParamByName('IDMataPelajaran').AsString := idMataPelajaran;
+    DM.zqHadirSw.Params.ParamByName('Tanggal').AsString := currentDate;
+    DM.zqHadirSw.Params.ParamByName('Waktu').AsString := currentTime;
+    DM.zqHadirSw.ExecSQL;
+
+    DM.zqHadirSw.SQL.Text :=
+      'SELECT ' +
+      '    mp.IDMataPelajaran AS IDKelas, ' +
+      '    mp.Nama AS NamaKelas, ' +
+      '    k.Tanggal, ' +
+      '    k.Waktu ' +
+      'FROM kehadiran k ' +
+      'JOIN matapelajaran mp ON k.IDMataPelajaran = mp.IDMataPelajaran ' +
+      'WHERE k.NIS = :NIS AND mp.IDMataPelajaran = :IDKelas';
+    DM.zqHadirSw.Params.ParamByName('NIS').AsString := nis;
+    DM.zqHadirSw.Params.ParamByName('IDKelas').AsString := idMataPelajaran;
+    DM.zqHadirSw.Open;
+
+    ShowMessage('Data kehadiran berhasil ditambahkan.');
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Gagal menambahkan data kehadiran: ' + E.Message);
+    end;
+  end;
+end;
+
+procedure TFProfileSiswa.btnJadwalClick(Sender: TObject);
+begin
+  DM.rptJadwalSw.LoadFromFile('JadwalSw.fr3');
+  DM.rptJadwalSw.ShowReport();
+end;
+
+procedure TFProfileSiswa.btnPrintHadirClick(Sender: TObject);
+begin
+  DM.rptHadirSw.LoadFromFile('HadirSw.fr3');
+  DM.rptHadirSw.ShowReport();
 end;
 
 end.

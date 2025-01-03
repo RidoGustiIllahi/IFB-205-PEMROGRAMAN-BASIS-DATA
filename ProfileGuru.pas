@@ -29,18 +29,20 @@ type
     Label5: TLabel;
     btnPrintHadir: TBitBtn;
     btnTmbhHadir: TBitBtn;
-    btnFilter: TBitBtn;
     dbGridHadir: TSMDBGrid;
-    btnEditJadwal: TBitBtn;
-    btnSimpanJadwal: TBitBtn;
-    btnBatalJadwal: TBitBtn;
     dbLookUpHadir: TDBLookupComboBox;
+    btnHapus: TBitBtn;
     procedure btnLogoutClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnEditProfileClick(Sender: TObject);
     procedure btnSimpanProfileClick(Sender: TObject);
     procedure btnBatalProfileClick(Sender: TObject);
     procedure btnAccountClick(Sender: TObject);
+    procedure dbLookUpHadirCloseUp(Sender: TObject);
+    procedure btnTmbhHadirClick(Sender: TObject);
+    procedure btnHapusClick(Sender: TObject);
+    procedure btnJadwalClick(Sender: TObject);
+    procedure btnPrintHadirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,7 +54,7 @@ var
 
 implementation
 
-uses DataModule, Login, Account;
+uses DataModule, Login, Account, PresensiGuru;
 
 {$R *.dfm}
 
@@ -181,6 +183,129 @@ begin
   
   FEdAccount.panelUtama.Enabled := True;
   FEdAccount.Show;
+end;
+
+procedure TFProfileGuru.dbLookUpHadirCloseUp(Sender: TObject);
+var
+  selectedKelas: string;
+begin
+  if VarIsNull(dbLookUpHadir.KeyValue) then
+    begin
+      ShowMessage('Silakan pilih kelas.');
+      dbLookUpHadir.KeyValue := Null;
+      Exit;
+    end
+  else
+    begin
+      selectedKelas := dbLookUpHadir.KeyValue;
+
+      DM.zqHadirGr.Close;
+      DM.zqHadirGr.SQL.Text :=
+        'SELECT '+
+        '    mp.IDMataPelajaran AS IDKelas,'+
+        '    mp.Nama AS NamaKelas,'+
+        '    s.NIS,'+
+        '    s.Nama AS NamaSiswa,'+
+        '    k.Tanggal,'+
+        '    k.Waktu,'+
+        '    k.IDKehadiran '+
+        'FROM '+
+        '    kehadiran k '+
+        'JOIN '+
+        '    matapelajaran mp ON k.IDMataPelajaran = mp.IDMataPelajaran '+
+        'JOIN '+
+        '    siswa s ON k.NIS = s.NIS '+
+        'WHERE '+
+        '    mp.NIP = :NIP AND mp.IDMataPelajaran = :IDKelas '+
+        'ORDER BY k.Tanggal DESC, k.Waktu DESC';
+      DM.zqHadirGr.Params.ParamByName('NIP').AsString := DM.zqGuru['NIP'];
+      DM.zqHadirGr.Params.ParamByName('IDKelas').AsString := selectedKelas;
+      DM.zqHadirGr.Open;
+    end;
+end;
+
+procedure TFProfileGuru.btnTmbhHadirClick(Sender: TObject);
+begin
+  panelHeader.Enabled := False;
+  panelProfile.Enabled := False;
+  panelJadwal.Enabled := False;
+  panelHadir.Enabled := False;
+  FPresensiGuru.edNis.Text := '';
+  FPresensiGuru.dbLookUpPresensi.KeyValue := Null;
+
+  FProfileGuru.Hide;
+  FPresensiGuru.Show;
+end;
+
+procedure TFProfileGuru.btnHapusClick(Sender: TObject);
+var
+  NIP: string;
+  idKehadiran, confirmResult: Integer;
+begin
+  NIP := DM.zqGuru['NIP'];
+  if DM.zqHadirGr.IsEmpty then
+  begin
+    ShowMessage('Tidak ada data yang dipilih untuk dihapus.');
+    Exit;
+  end;
+
+  idKehadiran := DM.zqHadirGr.FieldByName('IDKehadiran').AsInteger;
+
+  confirmResult := MessageDlg('Apakah Anda yakin ingin menghapus data ini?', mtConfirmation, [mbOK, mbCancel], 0);
+
+  if confirmResult = mrOk then
+    begin
+      try
+        // Hapus data berdasarkan IDKehadiran
+        DM.zqHadirGr.Close;
+        DM.zqHadirGr.SQL.Text := 'DELETE FROM kehadiran WHERE IDKehadiran = :idKehadiran';
+        DM.zqHadirGr.Params.ParamByName('idKehadiran').AsInteger := idKehadiran;
+        DM.zqHadirGr.ExecSQL;
+
+        DM.zqHadirGr.Close;
+        DM.zqHadirGr.SQL.Text :=
+            'SELECT '+
+            '    mp.IDMataPelajaran AS IDKelas,'+
+            '    mp.Nama AS NamaKelas,'+
+            '    s.NIS,'+
+            '    s.Nama AS NamaSiswa,'+
+            '    k.Tanggal,'+
+            '    k.Waktu,'+
+            '    k.IDKehadiran '+
+            'FROM '+
+            '    kehadiran k '+
+            'JOIN '+
+            '    matapelajaran mp ON k.IDMataPelajaran = mp.IDMataPelajaran '+
+            'JOIN '+
+            '    siswa s ON k.NIS = s.NIS '+
+            'WHERE '+
+            '    mp.NIP = :NIP '+
+            'ORDER BY k.Tanggal DESC, k.Waktu DESC';
+        DM.zqHadirGr.Params.ParamByName('NIP').AsString := NIP;
+        DM.zqHadirGr.Open;
+
+        ShowMessage('Data berhasil dihapus.');
+      except
+        on E: Exception do
+          ShowMessage('Gagal menghapus data: ' + E.Message);
+      end;
+    end
+  else
+    begin
+      ShowMessage('Penghapusan dibatalkan.');
+    end;
+end;
+
+procedure TFProfileGuru.btnJadwalClick(Sender: TObject);
+begin
+  DM.rptJadwalGr.LoadFromFile('JadwalGr.fr3');
+  DM.rptJadwalGr.ShowReport();
+end;
+
+procedure TFProfileGuru.btnPrintHadirClick(Sender: TObject);
+begin
+  DM.rptHadirGr.LoadFromFile('HadirGr.fr3');
+  DM.rptHadirGr.ShowReport();
 end;
 
 end.

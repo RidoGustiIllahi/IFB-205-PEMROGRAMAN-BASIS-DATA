@@ -85,6 +85,7 @@ object FLogin: TFLogin
       Top = 80
       Width = 169
       Height = 21
+      PasswordChar = '*'
       TabOrder = 1
     end
     object btnLogin: TBitBtn
@@ -103,6 +104,7 @@ object FLogin: TFLogin
       Height = 17
       Caption = 'Lihat Password'
       TabOrder = 3
+      OnClick = cbLiatpwClick
     end
     object btnKeluar: TBitBtn
       Left = 112

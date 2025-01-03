@@ -24,6 +24,7 @@ type
     btnKeluar: TBitBtn;
     procedure btnKeluarClick(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
+    procedure cbLiatpwClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,7 +35,7 @@ var
   FLogin: TFLogin;
 
 implementation
-  uses DataModule, ProfileSiswa, ProfileGuru;
+  uses DataModule, ProfileSiswa, ProfileGuru, PresensiGuru;
 
 {$R *.dfm}
 
@@ -116,12 +117,12 @@ begin
               '    mp.IDMataPelajaran AS IDKelas, ' +
               '    mp.Nama AS NamaKelas ' +
               'FROM ' +
-              '    siswamatapelajaran sm ' +
+              '    matapelajaran mp ' +
               'JOIN ' +
-              '    matapelajaran mp ON sm.IDMataPelajaran = mp.IDMataPelajaran ' +
+              '    siswamatapelajaran sm ON mp.IDMataPelajaran = sm.IDMataPelajaran ' +
               'WHERE   ' +
               '    sm.NIS = :NIS ' +
-              'ORDER BY mp.Nama';
+              'ORDER BY mp.IDMataPelajaran';
           DM.zqKelas.Params.ParamByName('NIS').AsString := NIS;
           DM.zqKelas.Open;
 
@@ -193,13 +194,17 @@ begin
               '    matapelajaran ' +
               'WHERE   ' +
               '    NIP = :NIP ' +
-              'ORDER BY NamaKelas';
+              'ORDER BY IDMataPelajaran';
           DM.zqKelas.Params.ParamByName('NIP').AsString := NIP;
           DM.zqKelas.Open;
 
           FProfileGuru.dbLookUpHadir.ListSource := DM.dsKelas;
           FProfileGuru.dbLookUpHadir.ListField := 'NamaKelas';
           FProfileGuru.dbLookUpHadir.KeyField := 'IDKelas';
+
+          FPresensiGuru.dbLookUpPresensi.ListSource := DM.dsKelas;
+          FPresensiGuru.dbLookUpPresensi.ListField := 'NamaKelas';
+          FPresensiGuru.dbLookUpPresensi.KeyField := 'IDKelas';
 
           Break;
         end
@@ -229,6 +234,13 @@ begin
       begin
         MessageDlg('Username atau password salah.', mtError, [mbOK], 0);
         end;
+end;
+
+procedure TFLogin.cbLiatpwClick(Sender: TObject);
+begin
+  if cbLiatpw.Checked then
+      edPassword.PasswordChar := #0 else
+      edPassword.PasswordChar := '*';
 end;
 
 end.

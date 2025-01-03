@@ -1,6 +1,6 @@
 object FProfileGuru: TFProfileGuru
-  Left = 486
-  Top = 50
+  Left = 463
+  Top = 70
   Width = 770
   Height = 747
   Caption = 'Profile Guru'
@@ -318,37 +318,7 @@ object FProfileGuru: TFProfileGuru
       Height = 25
       Caption = 'Print Jadwal'
       TabOrder = 1
-    end
-    object btnEditJadwal: TBitBtn
-      Left = 640
-      Top = 200
-      Width = 75
-      Height = 25
-      Caption = 'Edit Profile'
-      TabOrder = 2
-      OnClick = btnEditProfileClick
-    end
-    object btnSimpanJadwal: TBitBtn
-      Left = 560
-      Top = 200
-      Width = 75
-      Height = 25
-      Caption = 'Simpan'
-      Enabled = False
-      TabOrder = 3
-      Visible = False
-      OnClick = btnSimpanProfileClick
-    end
-    object btnBatalJadwal: TBitBtn
-      Left = 480
-      Top = 200
-      Width = 75
-      Height = 25
-      Caption = 'Batal'
-      Enabled = False
-      TabOrder = 4
-      Visible = False
-      OnClick = btnBatalProfileClick
+      OnClick = btnJadwalClick
     end
   end
   object PanelHadir: TPanel
@@ -371,8 +341,8 @@ object FProfileGuru: TFProfileGuru
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 23
-      Top = 185
+      Left = 383
+      Top = 17
       Width = 79
       Height = 20
       Caption = 'Pilih Kelas :'
@@ -384,38 +354,32 @@ object FProfileGuru: TFProfileGuru
       ParentFont = False
     end
     object btnPrintHadir: TBitBtn
-      Left = 632
-      Top = 184
+      Left = 24
+      Top = 192
       Width = 81
       Height = 25
       Caption = 'Print Kehadiran'
       TabOrder = 0
+      OnClick = btnPrintHadirClick
     end
     object btnTmbhHadir: TBitBtn
       Left = 616
-      Top = 8
+      Top = 192
       Width = 97
       Height = 25
       Caption = 'Tambah Kehadiran'
       TabOrder = 1
-    end
-    object btnFilter: TBitBtn
-      Left = 352
-      Top = 184
-      Width = 75
-      Height = 25
-      Caption = 'Filter'
-      TabOrder = 2
+      OnClick = btnTmbhHadirClick
     end
     object dbGridHadir: TSMDBGrid
       Left = 8
       Top = 40
       Width = 721
-      Height = 137
+      Height = 145
       DataSource = DM.dsHadirGr
       Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
       ReadOnly = True
-      TabOrder = 3
+      TabOrder = 2
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
@@ -493,11 +457,21 @@ object FProfileGuru: TFProfileGuru
         end>
     end
     object dbLookUpHadir: TDBLookupComboBox
-      Left = 111
-      Top = 185
+      Left = 471
+      Top = 17
       Width = 233
       Height = 21
+      TabOrder = 3
+      OnCloseUp = dbLookUpHadirCloseUp
+    end
+    object btnHapus: TBitBtn
+      Left = 536
+      Top = 192
+      Width = 75
+      Height = 25
+      Caption = 'Hapus'
       TabOrder = 4
+      OnClick = btnHapusClick
     end
   end
 end

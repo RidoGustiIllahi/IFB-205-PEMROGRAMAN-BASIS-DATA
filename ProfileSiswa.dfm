@@ -137,6 +137,7 @@ object FProfileSiswa: TFProfileSiswa
       Height = 25
       Caption = 'Print Jadwal'
       TabOrder = 1
+      OnClick = btnJadwalClick
     end
   end
   object panelHeader: TPanel
@@ -340,8 +341,8 @@ object FProfileSiswa: TFProfileSiswa
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 43
-      Top = 180
+      Left = 81
+      Top = 44
       Width = 79
       Height = 20
       Caption = 'Pilih Kelas :'
@@ -352,38 +353,33 @@ object FProfileSiswa: TFProfileSiswa
       Font.Style = []
       ParentFont = False
     end
-    object dbLookUpHadir: TDBLookupComboBox
-      Left = 129
-      Top = 180
-      Width = 233
-      Height = 21
-      TabOrder = 0
-    end
     object btnPrintHadir: TBitBtn
-      Left = 41
+      Left = 25
       Top = 208
       Width = 81
       Height = 25
       Caption = 'Print Kehadiran'
-      TabOrder = 2
+      TabOrder = 0
+      OnClick = btnPrintHadirClick
     end
     object btnTmbhHadir: TBitBtn
-      Left = 129
+      Left = 377
       Top = 208
       Width = 75
       Height = 25
       Caption = 'Presensi'
-      TabOrder = 3
+      TabOrder = 1
+      OnClick = btnTmbhHadirClick
     end
     object dbGridHadir: TSMDBGrid
       Left = 8
-      Top = 40
+      Top = 68
       Width = 465
       Height = 137
       DataSource = DM.dsHadirSw
       Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
       ReadOnly = True
-      TabOrder = 4
+      TabOrder = 2
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
@@ -443,13 +439,13 @@ object FProfileSiswa: TFProfileSiswa
           Visible = True
         end>
     end
-    object btnFilter: TBitBtn
-      Left = 367
-      Top = 178
-      Width = 72
-      Height = 24
-      Caption = 'Filter'
-      TabOrder = 1
+    object dbLookUpHadir: TDBLookupComboBox
+      Left = 167
+      Top = 44
+      Width = 233
+      Height = 21
+      TabOrder = 3
+      OnCloseUp = dbLookUpHadirCloseUp
     end
   end
 end

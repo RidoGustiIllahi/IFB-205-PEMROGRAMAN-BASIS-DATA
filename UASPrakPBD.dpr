@@ -7,7 +7,7 @@ uses
   ProfileSiswa in 'ProfileSiswa.pas' {FProfileSiswa},
   ProfileGuru in 'ProfileGuru.pas' {FProfileGuru},
   Admin in 'Admin.pas' {FAdmin},
-  PresensiGuru in 'PresensiGuru.pas' {Form1},
+  PresensiGuru in 'PresensiGuru.pas' {FPresensiGuru},
   PresensiSiswa in 'PresensiSiswa.pas' {Form2},
   Account in 'Account.pas' {FEdAccount};
 
@@ -20,7 +20,7 @@ begin
   Application.CreateForm(TFProfileGuru, FProfileGuru);
   Application.CreateForm(TFAdmin, FAdmin);
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFPresensiGuru, FPresensiGuru);
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TFEdAccount, FEdAccount);
   Application.Run;
